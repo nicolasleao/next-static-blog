@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Static Blog
+
+A modern, fully static blogging solution built with Next.js, Tailwind CSS, and Three.js. Features a beautiful dark theme with green accents and an interactive 3D cloud animation.
+
+## Features
+
+- Markdown-based blog posts with frontmatter support
+- Syntax highlighting for code blocks
+- SEO-optimized rendered post results
+- Interactive 3D cloud animation on the homepage
+- Fully responsive design with dark mode
+- About and Community pages
 
 ## Getting Started
 
@@ -16,21 +27,42 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Adding Blog Posts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To add a new blog post, create a new markdown file in the `/posts` directory with the following format:
 
-## Learn More
+```markdown
+---
+title: "Your Post Title"
+date: "YYYY-MM-DD"
+excerpt: "A short excerpt or summary of your post"
+coverImage: "/images/your-image.jpg"
+---
 
-To learn more about Next.js, take a look at the following resources:
+# Your Post Title
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Content goes here...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All posts will automatically appear on the homepage, sorted by date (newest first).
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/posts`: Markdown files for blog posts
+- `/src/app`: Next.js app router components
+- `/src/components`: Reusable React components
+- `/public/images`: Images for blog posts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technologies Used
+
+- [Next.js](https://nextjs.org) - React framework
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS
+- [Three.js](https://threejs.org) / [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) - 3D graphics
+- [Gray Matter](https://github.com/jonschlinkert/gray-matter) - Markdown frontmatter parsing
+- [Remark](https://github.com/remarkjs/remark) - Markdown processing
+
+## Customization
+
+- Update theme colors in `tailwind.config.ts`
+- Modify the 3D cloud in `src/components/ThreeCloud.tsx`
+- Edit global styles in `src/app/globals.css`

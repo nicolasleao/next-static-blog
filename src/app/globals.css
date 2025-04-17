@@ -1,21 +1,191 @@
+/* Import highlight.js styles */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css');
 @import "tailwindcss";
+
+/* Hamburger Menu Animation */
+.hamburger-wrapper {
+  position: relative;
+  width: 30px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.hamburger-line {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #88A773;
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  will-change: transform, opacity;
+}
+
+.hamburger-wrapper.open {
+  transform: rotate(90deg);
+}
+
+.hamburger-wrapper.open .line-1 {
+  transform: rotate(45deg) translate(8px, 8px) scaleX(0.8);
+}
+
+.hamburger-wrapper.open .line-2 {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger-wrapper.open .line-3 {
+  transform: rotate(-45deg) translate(8px, -8px) scaleX(0.8);
+}
+
+/* Custom styling for prose/typography in markdown */
+.prose {
+  color: var(--foreground);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: #88A773;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.prose a {
+  color: #9CA668;
+  text-decoration: underline;
+}
+
+.prose p, .prose li {
+  color: #e0e7d3;
+  margin-bottom: 1em;
+}
+
+.prose ul, .prose ol {
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.prose code {
+  color: #e0e7d3;
+  background: #252825;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-family: var(--font-geist-mono);
+}
+
+/* Improved code block styling */
+.prose pre {
+  background: #252825;
+  color: #e0e7d3;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: var(--font-geist-mono);
+  border: 1px solid #3F4A3D;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* Syntax highlighting overrides */
+.hljs {
+  background: #252825 !important;
+  padding: 0 !important;
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-title, .hljs-section, .hljs-built_in, .hljs-literal {
+  color: #88A773 !important;
+}
+
+.hljs-string, .hljs-meta, .hljs-name, .hljs-type, .hljs-attr, .hljs-symbol, .hljs-bullet, .hljs-addition {
+  color: #C6D99F !important;
+}
+
+.hljs-comment, .hljs-quote, .hljs-deletion {
+  color: #8A9A7B !important;
+}
+
+/* Full-height hero section for 3D cloud background */
+.hero-section {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  background-color: rgba(23, 26, 25, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(136, 167, 115, 0.3);
+  max-width: 100%;
+  width: 36rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cloud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Replace theme() functions with direct color values */
+@theme {
+  --prose-body: #f1efe4;
+  --prose-headings: #88A773;
+  --prose-lead: #e0e7d3;
+  --prose-links: #9CA668;
+  --prose-bold: #f1efe4;
+  --prose-counters: #5A6858;
+  --prose-bullets: #5A6858;
+  --prose-hr: #5A6858;
+  --prose-quotes: #f1efe4;
+  --prose-quote-borders: #5A6858;
+  --prose-captions: #5A6858;
+  --prose-code: #f1efe4;
+  --prose-pre-code: #f1efe4;
+  --prose-pre-bg: #131613;
+  --prose-th-borders: #5A6858;
+  --prose-td-borders: #5A6858;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #171A19;
+    --foreground: #f1efe4;
   }
 }
 
