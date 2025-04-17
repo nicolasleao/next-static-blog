@@ -148,6 +148,10 @@
   align-items: center;
 }
 
+hr {
+  border-color: #88A77322;
+}
+
 .cloud-container {
   position: absolute;
   top: 0;

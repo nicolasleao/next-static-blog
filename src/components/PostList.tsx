@@ -5,6 +5,7 @@ export type Post = {
   title: string;
   date: string;
   excerpt: string;
+  status?: string;
 };
 
 export default function PostList({ posts }: { posts: Post[] }) {

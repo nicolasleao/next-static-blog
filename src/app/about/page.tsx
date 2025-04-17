@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Avatar from "../../components/Avatar";
 
 export const metadata = {
@@ -19,9 +18,9 @@ export default function AboutPage() {
 
       <div className="prose prose-invert max-w-none">
         <p>
-          I'm a Full Stack Engineer with expertise in accelerating value delivery and resolving complex 
+          I&apos;m a Full Stack Engineer with expertise in accelerating value delivery and resolving complex 
           technical challenges to optimize system performance and improve user experiences. Currently 
-          working at Vectal where I'm helping redefine productivity through innovative software solutions.
+          working at Vectal where I&apos;m helping redefine productivity through innovative software solutions.
         </p>
 
         <h2>Professional Highlights</h2>
@@ -49,7 +48,7 @@ export default function AboutPage() {
         {/* <h2>Accomplishments</h2>
         <div className="bg-pastel-primary/10 p-4 rounded-lg border border-pastel-primary/20 mb-4">
           <h3 className="text-pastel-accent mt-0">Tetrix Challenge | VTEX (2020)</h3>
-          <p className="mb-1">Finalist among 72,000+ participants in the world's biggest university challenge, demonstrating skills in statistics, logic, leadership, and e-commerce.</p>
+          <p className="mb-1">Finalist among 72,000+ participants in the world&apos;s biggest university challenge, demonstrating skills in statistics, logic, leadership, and e-commerce.</p>
         </div>
         
         <div className="bg-pastel-primary/10 p-4 rounded-lg border border-pastel-primary/20">
@@ -59,7 +58,7 @@ export default function AboutPage() {
 
         <h2>Contact Me</h2>
         <p>
-          I'm always open to collaboration and discussions about productivity, technology trends, and 
+          I&apos;m always open to collaboration and discussions about productivity, technology trends, and 
           innovative projects. Feel free to reach out via:
         </p>
         <ul>

@@ -38,9 +38,9 @@ export default function HomePage() {
         {/* Hero Content (Foreground) */}
         <div className="hero-content">
           <Avatar />
-          <h1 className="text-4xl font-bold text-pastel-primary mb-2">Hey, I'm Nicolas</h1>
+          <h1 className="text-4xl font-bold text-pastel-primary mb-2">Hey, I&apos;m Nicolas</h1>
           <p className="text-pastel-light max-w-lg mx-auto">
-            I'm an AI Engineer from Brazil, and here I share some of my personal projects, guides and other content about what I'm currently working on.
+            I&apos;m an AI Engineer from Brazil, and here I share some of my personal projects, guides and other content about what I&apos;m currently working on.
           </p>
         </div>
       </section>

@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
 // Use ErrorBoundary to prevent entire app from crashing if Three.js fails
@@ -60,7 +60,7 @@ function Cloud() {
   });
 
   // Handle point hover
-  const handlePointerOver = useCallback((e: any, index: number) => {
+  const handlePointerOver = useCallback((e: ThreeEvent<PointerEvent>, index: number) => {
     e.stopPropagation();
     setHoveredPoint(index);
     document.body.style.cursor = "pointer";

@@ -8,6 +8,12 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeHighlight from "rehype-highlight";
 import Link from "next/link";
+import { ParsedUrlQuery } from "querystring";
+
+// Define the params type with Promise
+interface SlugParams extends ParsedUrlQuery {
+  slug: string;
+}
 
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), "posts");
@@ -38,8 +44,9 @@ async function getPost(slug: string) {
 }
 
 // Export metadata for better SEO
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<SlugParams> }) {
+  const { slug } = await params;
+  const post = await getPost(slug);
   if (!post) return { title: 'Post Not Found' };
   
   return {
@@ -48,8 +55,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+export default async function PostPage({ params }: { params: Promise<SlugParams> }) {
+  const { slug } = await params;
+  const post = await getPost(slug);
   if (!post) return notFound();
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
