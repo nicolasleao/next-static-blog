@@ -7,6 +7,10 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeFormat from "rehype-format";
+import rehypeRaw from "rehype-raw";
 import Link from "next/link";
 import { ParsedUrlQuery } from "querystring";
 
@@ -27,11 +31,15 @@ async function getPost(slug: string) {
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);
   
-  // Use unified with rehype-highlight for better syntax highlighting
+  // Use unified with enhanced rehype plugins for better markdown rendering
   const processedContent = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeHighlight, { ignoreMissing: true, detect: true })
+    .use(remarkRehype, { allowDangerousHtml: true }) // Allow HTML in markdown
+    .use(rehypeRaw) // Parse HTML in the markdown
+    .use(rehypeSlug) // Add IDs to headings
+    .use(rehypeAutolinkHeadings, { behavior: 'append' }) // Add links to headings
+    .use(rehypeHighlight, { ignoreMissing: true, detect: true }) // Syntax highlighting
+    .use(rehypeFormat) // Format HTML output
     .use(rehypeStringify)
     .process(content);
   
@@ -40,6 +48,7 @@ async function getPost(slug: string) {
     date: data.date,
     excerpt: data.excerpt,
     contentHtml: processedContent.toString(),
+    status: data.status || "public",
   };
 }
 
@@ -59,6 +68,12 @@ export default async function PostPage({ params }: { params: Promise<SlugParams>
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return notFound();
+  
+  // Don't render draft posts
+  if (post.status === "draft") {
+    return notFound();
+  }
+  
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
       <Link href="/" className="text-pastel-primary hover:text-pastel-accent transition-colors mb-6 inline-block">
@@ -66,8 +81,10 @@ export default async function PostPage({ params }: { params: Promise<SlugParams>
       </Link>
       <h1 className="text-3xl font-bold text-pastel-primary mb-2">{post.title}</h1>
       <div className="text-sm text-pastel-muted mb-8">{post.date}</div>
-      <article className="prose prose-invert prose-headings:text-pastel-primary prose-a:text-pastel-secondary max-w-none" 
-               dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+      <article 
+        className="prose prose-invert prose-headings:text-pastel-primary prose-a:text-pastel-secondary max-w-none prose-table:border-collapse prose-td:border prose-td:border-pastel-primary/20 prose-td:p-2 prose-th:border prose-th:border-pastel-primary/20 prose-th:p-2" 
+        dangerouslySetInnerHTML={{ __html: post.contentHtml }} 
+      />
     </main>
   );
 } 
