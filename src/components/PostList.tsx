@@ -20,7 +20,7 @@ export default function PostList({ posts }: { posts: Post[] }) {
           <h3 className="text-xl font-semibold text-pastel-primary group-hover:text-pastel-accent transition-colors">
             {post.title}
           </h3>
-          <div className="text-sm text-pastel-muted/80 mt-1">{post.date}</div>
+          <div className="text-sm text-pastel-muted/80 mt-1">{new Date(post.date).toLocaleDateString()}</div>
           <div className="text-pastel-light mt-2">{post.excerpt}</div>
         </Link>
       ))}

@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeHighlight from "rehype-highlight";
@@ -34,6 +35,7 @@ async function getPost(slug: string) {
   // Use unified with enhanced rehype plugins for better markdown rendering
   const processedContent = await unified()
     .use(remarkParse)
+    .use(remarkGfm) // Add GFM support for tables, strikethrough, etc.
     .use(remarkRehype, { allowDangerousHtml: true }) // Allow HTML in markdown
     .use(rehypeRaw) // Parse HTML in the markdown
     .use(rehypeSlug) // Add IDs to headings
@@ -80,9 +82,14 @@ export default async function PostPage({ params }: { params: Promise<SlugParams>
         ← Back to home
       </Link>
       <h1 className="text-3xl font-bold text-pastel-primary mb-2">{post.title}</h1>
-      <div className="text-sm text-pastel-muted mb-8">{post.date}</div>
+      <div className="text-sm text-pastel-muted mb-8">{new Date(post.date).toLocaleDateString()}</div>
       <article 
-        className="prose prose-invert prose-headings:text-pastel-primary prose-a:text-pastel-secondary max-w-none prose-table:border-collapse prose-td:border prose-td:border-pastel-primary/20 prose-td:p-2 prose-th:border prose-th:border-pastel-primary/20 prose-th:p-2" 
+        className="prose prose-invert prose-headings:text-pastel-primary prose-a:text-pastel-secondary max-w-none markdown-table
+                   prose-table:border-collapse prose-table:w-full prose-table:my-4
+                   prose-thead:bg-pastel-primary/10 prose-thead:border-pastel-primary/20
+                   prose-th:p-3 prose-th:border prose-th:border-pastel-primary/20 prose-th:text-pastel-primary
+                   prose-td:p-3 prose-td:border prose-td:border-pastel-primary/20
+                   prose-tr:even:bg-pastel-primary/5" 
         dangerouslySetInnerHTML={{ __html: post.contentHtml }} 
       />
     </main>

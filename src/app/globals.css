@@ -198,3 +198,38 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Table styling */
+.markdown-table table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.markdown-table th,
+.markdown-table td {
+  border: 1px solid rgba(136, 167, 115, 0.2);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.markdown-table th {
+  background-color: rgba(136, 167, 115, 0.1);
+  font-weight: bold;
+}
+
+.markdown-table tr:nth-child(even) {
+  background-color: rgba(136, 167, 115, 0.05);
+}
+
+/* Additional styling for better table visibility in dark mode */
+.markdown-table table {
+  color: var(--color-text);
+}
+
+/* Table caption styling if needed */
+.markdown-table caption {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  color: rgba(136, 167, 115, 0.8);
+}
