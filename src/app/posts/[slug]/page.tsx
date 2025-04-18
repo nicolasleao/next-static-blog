@@ -71,11 +71,6 @@ export default async function PostPage({ params }: { params: Promise<SlugParams>
   const post = await getPost(slug);
   if (!post) return notFound();
   
-  // Don't render draft posts
-  if (post.status === "draft") {
-    return notFound();
-  }
-  
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
       <Link href="/" className="text-pastel-primary hover:text-pastel-accent transition-colors mb-6 inline-block">
