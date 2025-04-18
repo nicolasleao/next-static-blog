@@ -1,5 +1,5 @@
 ---
-title: "OpenAI's o3 and o4-mini: Revolutionizing AI Reasoning Models"
+title: "OpenAI's o3 and o4-mini: What you need to know"
 date: "2025-04-18T15:10:07.270Z"
 excerpt: "Explore OpenAI's latest o3 and o4-mini models, their advanced reasoning capabilities, potential applications, and how to access them with the new Codex CLI tool."
 status: public

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import { GoogleAnalytics } from '@next/third-parties/google'
 import MobileMenu from "../components/MobileMenu";
 import "./globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
   return (
     <html lang="en" className="dark">
       <head>
@@ -63,6 +65,7 @@ export default function RootLayout({
         </header>
         {children}
       </body>
+      {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId} />}
     </html>
   );
 }
