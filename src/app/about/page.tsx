@@ -1,7 +1,7 @@
 import Avatar from "../../components/Avatar";
 
 export const metadata = {
-  title: "About - Nicolas's Blog",
+  title: "About - Nicolas Leão",
   description: "About Nicolas, an AI Engineer from Brazil.",
 };
 

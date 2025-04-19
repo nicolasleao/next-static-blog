@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nicolas' Blog | AI Engineer",
+  title: "Nicolas | AI Engineer",
   description: "Personal blog and portfolio of Nicolas, an AI Engineer from Brazil.",
 };
 
