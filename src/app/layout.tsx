@@ -57,7 +57,7 @@ export default function RootLayout({
             <Link href="/" className="text-pastel-light hover:text-pastel-primary transition-colors">home</Link>
             <Link href="/about" className="text-pastel-light hover:text-pastel-primary transition-colors">about</Link>
             <Link href="https://www.youtube.com/@nicolasleao-tech" target="_blank" className="text-pastel-light hover:text-pastel-primary transition-colors">youtube</Link>
-            <Link href="https://cognition.digital" target="_blank" className="text-pastel-light hover:text-pastel-primary transition-colors">community</Link>
+            {/* <Link href="https://cognition.digital" target="_blank" className="text-pastel-light hover:text-pastel-primary transition-colors">community</Link> */}
           </nav>
           
           {/* Mobile Menu */}
