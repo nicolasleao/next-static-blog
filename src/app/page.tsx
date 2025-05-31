@@ -2,11 +2,10 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import PostList, { Post } from "../components/PostList";
-import Avatar from "../components/Avatar";
 import ClientThreeCloud from "../components/ClientThreeCloud";
-import AnimatedHero from "../components/AnimatedHero";
-import AnimatedSection from "../components/AnimatedSection";
-import AnimatedCloudContainer from "../components/AnimatedCloudContainer";
+import AnimatedHero from "@/components/AnimatedHero";
+import AnimatedSection from "@/components/AnimatedSection";
+import AnimatedCloudContainer from "@/components/AnimatedCloudContainer";
 
 function getPosts(): Post[] {
   const postsDir = path.join(process.cwd(), "posts");
