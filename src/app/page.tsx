@@ -5,7 +5,6 @@ import PostList, { Post } from "../components/PostList";
 import ClientThreeCloud from "../components/ClientThreeCloud";
 import AnimatedHero from "@/components/AnimatedHero";
 import AnimatedSection from "@/components/AnimatedSection";
-import AnimatedCloudContainer from "@/components/AnimatedCloudContainer";
 
 function getPosts(): Post[] {
   const postsDir = path.join(process.cwd(), "posts");
@@ -33,9 +32,9 @@ export default function HomePage() {
       {/* Hero section with 3D cloud as background */}
       <section className="hero-section">
         {/* 3D Cloud Background */}
-        <AnimatedCloudContainer>
+        <div className="cloud-container">
           <ClientThreeCloud />
-        </AnimatedCloudContainer>
+        </div>
         
         {/* Hero Content (Foreground) */}
         <AnimatedHero />
