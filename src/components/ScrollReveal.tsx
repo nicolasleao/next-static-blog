@@ -28,7 +28,7 @@ export default function ScrollReveal({
   const customVariants: Variants = delay > 0 || duration !== 0.6 ? {
     initial: variants.initial,
     whileInView: {
-      ...(variants.whileInView as any),
+      ...variants.whileInView,
       transition: {
         delay,
         duration,

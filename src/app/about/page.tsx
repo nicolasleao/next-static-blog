@@ -1,6 +1,5 @@
-import Avatar from "../../components/Avatar";
-import AnimatedAboutHero from "../../components/AnimatedAboutHero";
-import AnimatedAboutContent from "../../components/AnimatedAboutContent";
+import AnimatedAboutHero from "@/components/AnimatedAboutHero";
+import AnimatedAboutContent from "@/components/AnimatedAboutContent";
 
 export const metadata = {
   title: "About - Nicolas Leão",
