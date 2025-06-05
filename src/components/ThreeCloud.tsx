@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
 
 // Use ErrorBoundary to prevent entire app from crashing if Three.js fails
@@ -147,44 +148,74 @@ function ConnectionLines() {
   );
 }
 
+const cloudFadeIn = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 }
+};
+
 export default function ThreeCloud() {
   const [isClient, setIsClient] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   
   // Prevent hydration errors by only rendering ThreeJS on client
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Trigger loaded state after a short delay to ensure everything is rendered
+  useEffect(() => {
+    if (isClient) {
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+      }, 100); // Small delay to ensure Canvas is mounted
+      return () => clearTimeout(timer);
+    }
+  }, [isClient]);
   
   if (!isClient) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-pastel-dark rounded-xl">
-        <span className="text-pastel-primary">Loading 3D visualization...</span>
+      <div className="w-full h-full flex items-center justify-center bg-transparent">
+        <div className="opacity-0"></div>
       </div>
     );
   }
   
   try {
     return (
-      <Canvas 
-        camera={{ position: [0, 0, 55], fov: 60 }} 
-        style={{ width: "100%", height: "100%" }}
-        gl={{ alpha: true, antialias: true }}
-      >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[20, 20, 20]} intensity={0.8} color="#88A773" />
-        <pointLight position={[-20, -20, -20]} intensity={0.4} color="#C6D99F" />
-        <fog attach="fog" args={['#171A19', 50, 120]} />
-        <Cloud />
-        <ConnectionLines />
-        <OrbitControls 
-          enablePan={false} 
-          enableZoom={false} 
-          autoRotate 
-          autoRotateSpeed={0.5} 
-          minPolarAngle={Math.PI / 2 - 0.5} 
-          maxPolarAngle={Math.PI / 2 + 0.5}
-        />
-      </Canvas>
+      <AnimatePresence>
+        {isLoaded && (
+          <motion.div
+            className="w-full h-full"
+            variants={cloudFadeIn}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+          >
+            <Canvas 
+              camera={{ position: [0, 0, 55], fov: 60 }} 
+              style={{ width: "100%", height: "100%" }}
+              gl={{ alpha: true, antialias: true }}
+            >
+              <ambientLight intensity={0.4} />
+              <pointLight position={[20, 20, 20]} intensity={0.8} color="#88A773" />
+              <pointLight position={[-20, -20, -20]} intensity={0.4} color="#C6D99F" />
+              <fog attach="fog" args={['#171A19', 50, 120]} />
+              <Cloud />
+              <ConnectionLines />
+              <OrbitControls 
+                enablePan={false} 
+                enableZoom={false} 
+                autoRotate 
+                autoRotateSpeed={0.5} 
+                minPolarAngle={Math.PI / 2 - 0.5} 
+                maxPolarAngle={Math.PI / 2 + 0.5}
+              />
+            </Canvas>
+          </motion.div>
+        )}
+      </AnimatePresence>
     );
   } catch (error) {
     console.error('Error rendering ThreeCloud:', error);

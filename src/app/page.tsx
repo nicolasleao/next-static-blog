@@ -2,8 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import PostList, { Post } from "../components/PostList";
-import Avatar from "../components/Avatar";
 import ClientThreeCloud from "../components/ClientThreeCloud";
+import AnimatedHero from "@/components/AnimatedHero";
+import AnimatedSection from "@/components/AnimatedSection";
 
 function getPosts(): Post[] {
   const postsDir = path.join(process.cwd(), "posts");
@@ -36,20 +37,14 @@ export default function HomePage() {
         </div>
         
         {/* Hero Content (Foreground) */}
-        <div className="hero-content">
-          <Avatar />
-          <h1 className="text-4xl font-bold text-pastel-primary mb-2">Hey, I&apos;m Nicolas</h1>
-          <p className="text-pastel-light max-w-lg mx-auto">
-            I&apos;m an AI Engineer from Brazil, and here I share some of my personal projects, guides and other content about what I&apos;m currently working on.
-          </p>
-        </div>
+        <AnimatedHero />
       </section>
       
       {/* Content section */}
-      <section className="py-12">
+      <AnimatedSection>
         <h2 className="text-2xl font-semibold text-pastel-primary mb-4">Latest posts</h2>
         <PostList posts={posts} />
-      </section>
+      </AnimatedSection>
     </main>
   );
 }
